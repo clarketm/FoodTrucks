@@ -1,6 +1,6 @@
 # start from base
 FROM ubuntu:14.04
-MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
+MAINTAINER Travis Clarke <travis.m.clarke@gmail.com>
 
 # install system-wide deps for python and node
 RUN apt-get -yqq update
