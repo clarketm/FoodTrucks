@@ -18,7 +18,7 @@ def load_data_in_es():
         res = es.index(index="sfdata", doc_type="truck", id=id, body=truck)
     print "Total trucks loaded: ", len(data)
 
-def safe_check_index(index, retry=3):
+def safe_check_index(index, retry=20):
     """ connect to ES with retry """
     if not retry:
         print "Out of retries. Bailing out..."
@@ -28,7 +28,7 @@ def safe_check_index(index, retry=3):
         return status
     except exceptions.ConnectionError as e:
         print "Unable to connect to ES. Retrying in 5 secs..."
-        time.sleep(5)
+        time.sleep(60)
         safe_check_index(index, retry-1)
 
 
