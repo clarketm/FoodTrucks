@@ -24,7 +24,7 @@ var Vendor = React.createClass({
     render() {
         var r = this.props.data;
         return (
-          <li onMouseEnter={this.props.handleHover.bind(null, r.name)} onClick={this.toggleExpand}>
+          <li onMouseEnter={this.props.handleHover.bind(null, r.name)} onMouseLeave={this.props.handleHover.bind(null, false)} onClick={this.toggleExpand}>
             <p className="truck-name">{ r.name }</p>
             <div className="row">
               <div className="icons"> <i className="ion-android-pin"></i> </div>
