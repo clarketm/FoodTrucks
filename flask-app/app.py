@@ -9,10 +9,10 @@ es = Elasticsearch(host='es')
 app = Flask(__name__)
 
 
-def load_data_in_es(headers={'X-App-Token': 'x1rsCW9GlEsXYZVRPLyU0yP6n'}):
+def load_data_in_es():
     """ creates an index in elasticsearch """
-    url = "https://data.kingcounty.gov/resource/gkhn-e8mn.json"
-    r = requests.get(url, headers=headers)
+    url = "http://data.kingcounty.gov/resource/gkhn-e8mn.json"
+    r = requests.get(url)
     data = r.json()
     print "Loading data in elasticsearch ..."
     for id, truck in enumerate(data):
@@ -127,7 +127,11 @@ def search():
     })
 
 
-if __name__ == "__main__":
+def start(port=5000):
     check_and_load_index()
     # app.run(debug=True) # for dev
-    app.run(host='0.0.0.0', port=5000)  # for prod
+    app.run(host='0.0.0.0', port=port)  # for prod
+
+
+if __name__ == "__main__":
+    start()

@@ -2,8 +2,8 @@ import json
 import requests
 
 
-def getData(url, headers={'X-App-Token': 'x1rsCW9GlEsXYZVRPLyU0yP6n'}):
-    r = requests.get(url, headers=headers)
+def getData(url):
+    r = requests.get(url)
     return r.json()
 
 
@@ -46,5 +46,5 @@ def writeToFile(data, filename="data.geojson"):
 
 
 if __name__ == "__main__":
-    data = getData("https://data.kingcounty.gov/resource/gkhn-e8mn.json")
+    data = getData("http://data.kingcounty.gov/resource/gkhn-e8mn.json")
     writeToFile(convertData(data[:350]), filename="trucks.geojson")

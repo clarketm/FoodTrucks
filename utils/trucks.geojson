@@ -28,6 +28,23 @@
       "geometry": {
         "type": "Point", 
         "coordinates": [
+          47.62936064, 
+          -122.14152716
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "address": "2176 148th AVE NE", 
+        "marker-color": "#CC0033", 
+        "name": "Bevmo!", 
+        "marker-symbol": "restaurant", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
           47.62902129, 
           -122.33172694
         ]
@@ -54,6 +71,23 @@
         "address": "16717 SE 272ND ST ", 
         "marker-color": "#CC0033", 
         "name": "PUERTO VALLARTA", 
+        "marker-symbol": "restaurant", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          47.57459, 
+          -122.17166
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "address": "3930 FACTORIA MALL BL SE B3", 
+        "marker-color": "#CC0033", 
+        "name": "JAMBA JUICE #585", 
         "marker-symbol": "restaurant", 
         "marker-size": "medium"
       }
@@ -173,6 +207,23 @@
         "address": "16720 REDMOND WAY STE A", 
         "marker-color": "#CC0033", 
         "name": "TAQUERIA EL GALLO", 
+        "marker-symbol": "restaurant", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          47.4144890418, 
+          -122.1965401588
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "address": "20910 108TH AVE SE ", 
+        "marker-color": "#CC0033", 
+        "name": "TING TONG THAI CAFE", 
         "marker-symbol": "restaurant", 
         "marker-size": "medium"
       }
@@ -317,6 +368,23 @@
       "geometry": {
         "type": "Point", 
         "coordinates": [
+          47.611924583, 
+          -122.3377322508
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "address": "1620 4TH AVE", 
+        "marker-color": "#CC0033", 
+        "name": "SUBWAY-WESTLAKE MALL", 
+        "marker-symbol": "restaurant", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
           47.573911896, 
           -122.2944953807
         ]
@@ -402,40 +470,6 @@
       "geometry": {
         "type": "Point", 
         "coordinates": [
-          47.5422296175, 
-          -122.2730558483
-        ]
-      }, 
-      "type": "Feature", 
-      "properties": {
-        "address": "4655 S HOLLY ST", 
-        "marker-color": "#CC0033", 
-        "name": "SE SEATTLE NUTRITION", 
-        "marker-symbol": "restaurant", 
-        "marker-size": "medium"
-      }
-    }, 
-    {
-      "geometry": {
-        "type": "Point", 
-        "coordinates": [
-          47.3226024909, 
-          -122.3115865242
-        ]
-      }, 
-      "type": "Feature", 
-      "properties": {
-        "address": "1636 S 312TH ST ", 
-        "marker-color": "#CC0033", 
-        "name": "MOMMY'S DUMPLING HOUSE", 
-        "marker-symbol": "restaurant", 
-        "marker-size": "medium"
-      }
-    }, 
-    {
-      "geometry": {
-        "type": "Point", 
-        "coordinates": [
           47.6182817801, 
           -122.2010294576
         ]
@@ -479,6 +513,23 @@
         "address": "17611 VASHON HWY SW ", 
         "marker-color": "#CC0033", 
         "name": "SPORTSMAN INN", 
+        "marker-symbol": "restaurant", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          47.66996743, 
+          -122.19915193
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "address": "451 7TH AVE S BLDG D", 
+        "marker-color": "#CC0033", 
+        "name": "GOOGLE- BUILDING E", 
         "marker-symbol": "restaurant", 
         "marker-size": "medium"
       }
@@ -589,15 +640,15 @@
       "geometry": {
         "type": "Point", 
         "coordinates": [
-          47.6134811197, 
-          -122.3420456679
+          47.4440341702, 
+          -122.1533693834
         ]
       }, 
       "type": "Feature", 
       "properties": {
-        "address": "306 LENORA ST", 
+        "address": "17650 140TH AVE SE ", 
         "marker-color": "#CC0033", 
-        "name": "BENTO WORLD", 
+        "name": "WILD GARLIC", 
         "marker-symbol": "restaurant", 
         "marker-size": "medium"
       }
