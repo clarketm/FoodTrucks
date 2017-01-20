@@ -6,7 +6,7 @@ import requests
 from elasticsearch import Elasticsearch, exceptions
 from flask import Flask, jsonify, request, render_template
 
-es = Elasticsearch(host=os.getenv('BONSAI_URL', 'es'))
+es = Elasticsearch(host=os.getenv('BONSAI_URL', 'es'), port=80)
 
 app = Flask(__name__)
 
