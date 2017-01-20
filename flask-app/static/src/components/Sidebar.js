@@ -115,7 +115,7 @@ var Sidebar = React.createClass({
           "source": "trucks-highlight",
           "paint": {
             'circle-radius': 8,
-            'circle-color': 'rgba(164,65,99,1)'
+            'circle-color': 'rgba(105,190,40,1)'
           },
       });
     }
@@ -128,7 +128,6 @@ var Sidebar = React.createClass({
       this.setState({query: e.target.value});
   },
   handleHover(vendorName) {
-      console.log("here");
       this.plotOnMap(vendorName);
   },
   render() {
@@ -139,7 +138,7 @@ var Sidebar = React.createClass({
             <form onSubmit={this.handleSearch}>
               <input type="text" value={query} onChange={this.onChange}
                       placeholder="Burgers, Tacos or Wraps?"/>
-              <button>Search!</button>
+              <button>Search</button>
             </form>
           </div>
           <Intro />

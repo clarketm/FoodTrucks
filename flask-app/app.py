@@ -8,15 +8,17 @@ es = Elasticsearch(host='es')
 
 app = Flask(__name__)
 
-def load_data_in_es():
+
+def load_data_in_es(headers={'X-App-Token': 'x1rsCW9GlEsXYZVRPLyU0yP6n'}):
     """ creates an index in elasticsearch """
-    url = "http://data.sfgov.org/resource/rqzj-sfat.json"
-    r = requests.get(url)
+    url = "https://data.kingcounty.gov/resource/gkhn-e8mn.json"
+    r = requests.get(url, headers=headers)
     data = r.json()
     print "Loading data in elasticsearch ..."
     for id, truck in enumerate(data):
-        res = es.index(index="sfdata", doc_type="truck", id=id, body=truck)
+        res = es.index(index="bellevuedata", doc_type="truck", id=id, body=truck)
     print "Total trucks loaded: ", len(data)
+
 
 def safe_check_index(index, retry=20):
     """ connect to ES with retry """
@@ -27,16 +29,17 @@ def safe_check_index(index, retry=20):
         status = es.indices.exists(index)
         return status
     except exceptions.ConnectionError as e:
-        print "Unable to connect to ES. Retrying in 5 secs..."
+        print "Unable to connect to ES. Retrying in 20 secs..."
         time.sleep(60)
-        safe_check_index(index, retry-1)
+        safe_check_index(index, retry - 1)
 
 
 def check_and_load_index():
     """ checks if index exits and loads the data accordingly """
-    if not safe_check_index('sfdata'):
+    if not safe_check_index('bellevuedata'):
         print "Index not found..."
         load_data_in_es()
+
 
 ###########
 ### APP ###
@@ -44,6 +47,7 @@ def check_and_load_index():
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/debug')
 def test_es():
@@ -57,9 +61,11 @@ def test_es():
         resp["msg"] = "Unable to reach ES"
     return jsonify(resp)
 
+
 def format_fooditems(string):
     items = [x.strip().lower() for x in string.split(":")]
-    return items[1:] if items[0].find("cold truck") > -1 else items
+    return items
+
 
 @app.route('/search')
 def search():
@@ -71,31 +77,35 @@ def search():
         })
     try:
         res = es.search(
-                index="sfdata",
-                body={
-                    "query": {"match": {"fooditems": key}},
-                    "size": 750 # max document size
-              })
+            index="bellevuedata",
+            body={
+                "query": {"match": {"name": key}},
+                "size": 750  # max document size
+            })
     except Exception as e:
         return jsonify({
             "status": "failure",
             "msg": "error in reaching elasticsearch"
         })
     # filtering results
-    vendors = set([x["_source"]["applicant"] for x in res["hits"]["hits"]])
+    vendors = set([x["_source"]["name"] for x in res["hits"]["hits"]])
     temp = {v: [] for v in vendors}
     fooditems = {v: "" for v in vendors}
     for r in res["hits"]["hits"]:
-        applicant = r["_source"]["applicant"]
-        if "location" in r["_source"]:
+        name = r["_source"]["name"]
+        if 'latitude' in r["_source"] and 'longitude' in r["_source"]:
             truck = {
-                "hours"    : r["_source"].get("dayshours", "NA"),
-                "schedule" : r["_source"].get("schedule", "NA"),
-                "address"  : r["_source"].get("address", "NA"),
-                "location" : r["_source"]["location"]
+                # "hours": r["_source"].get("dayshours", "NA"),
+                # "schedule": r["_source"].get("schedule", "NA"),
+                "address": r["_source"].get("address", "NA"),
+                # "location": r["_source"]["location"]
+                "location": {
+                    'latitude': r["_source"].get('latitude'),
+                    'longitude': r["_source"].get('longitude'),
+                }
             }
-            fooditems[applicant] = r["_source"]["fooditems"]
-            temp[applicant].append(truck)
+            fooditems[name] = r["_source"]["name"]
+            temp[name].append(truck)
 
     # building up results
     results = {"trucks": []}
@@ -104,7 +114,7 @@ def search():
             "name": v,
             "fooditems": format_fooditems(fooditems[v]),
             "branches": temp[v],
-            "drinks": fooditems[v].find("COLD TRUCK") > -1
+            # "drinks": fooditems[v].find("COLD TRUCK") > -1
         })
     hits = len(results["trucks"])
     locations = sum([len(r["branches"]) for r in results["trucks"]])
@@ -116,7 +126,8 @@ def search():
         "status": "success"
     })
 
+
 if __name__ == "__main__":
     check_and_load_index()
-    #app.run(debug=True) # for dev
-    app.run(host='0.0.0.0', port=5000) # for prod
+    # app.run(debug=True) # for dev
+    app.run(host='0.0.0.0', port=5000)  # for prod

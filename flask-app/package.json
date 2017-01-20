@@ -1,14 +1,17 @@
 {
-  "name": "sf-food",
+  "name": "seattle-foodtrucks",
   "version": "0.0.1",
-  "description": "SF food app",
+  "description": "Seattle foodtrucks app",
   "main": "index.js",
   "scripts": {
     "start": "webpack --progress --colors --watch",
     "build": "NODE_ENV='production' webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Prakhar Srivastav",
+  "authors": [
+    "Travis Clarke",
+    "Prakhar Srivastav"
+  ],
   "license": "MIT",
   "dependencies": {
     "react": "^0.14.5",

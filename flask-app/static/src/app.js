@@ -3,12 +3,12 @@ var ReactDOM = require('react-dom');
 var Sidebar = require('./components/Sidebar');
 
 // setting up mapbox
-mapboxgl.accessToken = 'pk.eyJ1IjoicHJha2hhciIsImEiOiJjaWZlbzQ1M2I3Nmt2cnhrbnlxcTQyN3VkIn0.uOaUAUqN2VS7dC7XKS0KkQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2xhcmtldG0iLCJhIjoiY2l5NWRhOHVrMDA0bDJxcXA4ZHQ2anV4NyJ9.PAjkExk8fi1I6PzF8rmdQw';
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/prakhar/cij2cpsn1004p8ykqqir34jm8',
-    center: [-122.44, 37.77],
+    style: 'mapbox://styles/clarketm/ciy5dbm4k002e2st2m2jkns6q',
+    center: [-122.2015, 47.6101],
     zoom: 12
 });
 
