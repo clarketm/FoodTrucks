@@ -8,17 +8,19 @@ import requests
 from elasticsearch import Elasticsearch, exceptions
 from flask import Flask, jsonify, request, render_template
 
-bonsai = os.getenv('BONSAI_URL', 'es')
-auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
-host = bonsai.replace('https://%s:%s@' % (auth[0], auth[1]), '')
-es_header = [{
-    'host': host,
-    'port': 443,
-    'use_ssl': True,
-    'http_auth': (auth[0],auth[1])
-}]
-
-es = Elasticsearch(es_header)
+if os.getenv('BONSAI_URL'):
+    bonsai = os.getenv('BONSAI_URL')
+    auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
+    host = bonsai.replace('https://%s:%s@' % (auth[0], auth[1]), '')
+    es_header = [{
+        'host': host,
+        'port': 443,
+        'use_ssl': True,
+        'http_auth': (auth[0],auth[1])
+    }]
+    es = Elasticsearch(es_header)
+else:
+    es = Elasticsearch('es')
 
 app = Flask(__name__)
 

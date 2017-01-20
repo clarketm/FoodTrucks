@@ -9,7 +9,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/clarketm/ciy5dbm4k002e2st2m2jkns6q',
     center: [-122.2015, 47.6101],
-    zoom: 15
+    zoom: 11
 });
 
 ReactDOM.render(
